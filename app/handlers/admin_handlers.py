@@ -1,9 +1,8 @@
-from aiogram import F, Router, Bot
+from aiogram import F, Router
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command
-import asyncio
 
 from config import GROUP_ID
 from app.database.models import User
@@ -20,7 +19,6 @@ class Admin(StatesGroup):
 @router.message(F.chat.id == int(GROUP_ID), Command("admin"))
 async def test_handler(message: Message):
     await message.answer("Выберите действие:", reply_markup=admin_kb)
-
 
 
 @router.callback_query(F.data == "info")

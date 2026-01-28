@@ -1,5 +1,4 @@
 from aiogram import F, Router
-from aiogram.filters import CommandStart
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.context import FSMContext
@@ -46,7 +45,7 @@ async def get_new_name(message: Message, state: FSMContext):
         violation = True
 
     if violation:
-        message.answer("⛔️📛<b>Имя</b> и <b>Фамилия</b> должны быть введены через один <i>пробел</i>, и должны быть написаны через <i>кириллицу</i>. Также должны быть <i>заглавные буквы</i>. <b>Учтите формат и попробуйте снова:</b>", parse_mode="HTML")
+        await message.answer("⛔️📛<b>Имя</b> и <b>Фамилия</b> должны быть введены через один <i>пробел</i>, и должны быть написаны через <i>кириллицу</i>. Также должны быть <i>заглавные буквы</i>. <b>Учтите формат и попробуйте снова:</b>", parse_mode="HTML")
     else:
         user = await User.get(tg_id=message.from_user.id)
         user.name = message.text

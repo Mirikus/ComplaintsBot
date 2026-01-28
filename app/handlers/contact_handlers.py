@@ -1,8 +1,5 @@
 from aiogram import F, Router
-from aiogram.filters import CommandStart
-from aiogram.types import Message, CallbackQuery
-from aiogram.fsm.state import StatesGroup, State
-from aiogram.fsm.context import FSMContext
+from aiogram.types import Message
 
 from app.middlewares import Ban_check
 from app.keyboards import *

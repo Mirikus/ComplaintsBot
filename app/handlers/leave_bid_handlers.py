@@ -1,5 +1,4 @@
 from aiogram import F, Router, Bot
-from aiogram.filters import CommandStart
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.context import FSMContext
@@ -126,8 +125,8 @@ async def text_steps(message: Message, state: FSMContext, bot: Bot):
         await status(message, state)
     elif step == 3:
         await state.update_data(reason=message.text)
-
         await send_information(message, state, bot)
+        await message.answer("✅<b>Жалоба отправлена администрации.</b> Спасибо за Ваше обращение!", parse_mode="HTML")
     elif step == 2:
         await message.answer("⛔️📛В данном пункте нужно обязательно отправить <b>фотографию</b> или <b>видео</b> в виде медиа-сообщения. <b><i>Попробуйте ещё раз:</i></b>", parse_mode="HTML")
 
@@ -164,11 +163,13 @@ async def leave_offer_photo(message: Message, state: FSMContext, bot: Bot):
         user = await User.filter(tg_id=message.from_user.id).first()
         await bot.send_photo(chat_id=GROUP_ID, photo=message.photo[-1].file_id, caption=f"<b>💡Поступило новое предложение:</b>\n{message.from_user.username}\n<b><i>Имя и Фамилия: </i></b>{user.name}\n<b><i>Номер телефона: </i></b>{user.number}\n<b><i>Содержание: </i></b>{message.caption}", parse_mode="HTML")
         await state.clear()
+        await message.answer("✅💡<b>Идея принята и передана администрации.</b> Спасибо за Ваше обращение!", parse_mode="HTML")
     else:
         await message.answer("⛔️📛Предложение должно содержать только текст")
 
 @router.message(Request.offer, F.text)
 async def leave_offer_get(message: Message, state: FSMContext, bot: Bot):
     user = await User.filter(tg_id=message.from_user.id).first()
+    await message.answer("✅💡<b>Идея принята и передана администрации.</b> Спасибо за Ваше обращение!", parse_mode="HTML")
     await bot.send_message(chat_id=GROUP_ID, text=f"<b>💡Поступило новое предложение:</b>\n{message.from_user.username}\n<b><i>Имя и Фамилия: </i></b>{user.name}\n<b><i>Номер телефона: </i></b>{user.number}\n<b><i>Содержание: </i></b>{message.text}", parse_mode="HTML")
     await state.clear()

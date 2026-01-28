@@ -1,13 +1,11 @@
-from aiogram.types import (ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton)
-from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram import types
 
 main_kb = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text="📛Оставить заявку"), KeyboardButton(text="📞Связаться")],
                                         [KeyboardButton(text="⚙️Настройки")],
                                         [KeyboardButton(text="☎️Полезные контакты")]],
                             resize_keyboard=True)
-
-
 
 
 
@@ -30,7 +28,7 @@ call_kb = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="📞
                                                 [InlineKeyboardButton(text="📞Свяжитесь со мной в чат-боте", callback_data="chat_me")],
                                                 [InlineKeyboardButton(text="🔙Назад", callback_data="tomain")]])
 
-call_me_kb = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="✅Да", callback_data="recall"), InlineKeyboardButton(text="🔙Оставить номер телефона", callback_data="back_call_category")]])
+call_me_kb = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="✅Да", callback_data="recall"), InlineKeyboardButton(text="Оставить номер телефона", callback_data="one_number")]])
 
 chat_me_kb = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="❌📞Завершить диалог", callback_data="end_chat")]])
 
