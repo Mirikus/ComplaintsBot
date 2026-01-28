@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+env/
+venv/
+
+# Конфиденциальные данные
+.env
+
+# Базы данных
+*.sqlite3
+*.db
+
+# Логи
+*.log
